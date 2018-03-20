@@ -1,4 +1,4 @@
 # Algorithms and Data Structures
-| Title | Solution |
+| Title | Implementation |
 | --- | --- |
 | Heap Sort | [C++](https://raw.githubusercontent.com/yuanhui-yang/Algorithms-and-Data-Structures/master/heap-sort.cpp) |
