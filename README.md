@@ -1,8 +1,8 @@
 # Algorithms and Data Structures
-| Title | Implementation |
-| --- | --- |
-| Heap Sort | [C++](https://raw.githubusercontent.com/yuanhui-yang/Algorithms-and-Data-Structures/master/heap-sort.cpp) |
-| Quick Sort | [C++](https://raw.githubusercontent.com/yuanhui-yang/Algorithms-and-Data-Structures/master/quick-sort.cpp) |
-| Merge Sort | [C++](https://raw.githubusercontent.com/yuanhui-yang/Algorithms-and-Data-Structures/master/merge-sort.cpp) |
+| Title | Implementation | Online Judge |
+| --- | --- | --- |
+| Quick Sort | [C++](quick-sort.cpp) | https://leetcode.com/problems/sort-an-array/ |
+| Heap Sort | [C++](heap-sort.cpp) |
+| Merge Sort | [C++](merge-sort.cpp) |
 | Priority Queue | [C++]() |
 | vector

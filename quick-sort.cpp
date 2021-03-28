@@ -6,49 +6,47 @@ using namespace std;
 
 class Solution {
 public:
-	void sortIntegers2(vector<int> & A) {
-		quick_sort(A);
-	}
+    vector<int> sortArray(vector<int>& nums)
+    {
+        int sz = nums.size();
+        quick_sort(nums, 0, sz - 1);
+        return nums;
+    }
 private:
-	void quick_sort(vector<int> & A) {
-		partial_sort(A, 0, A.size());
-	}
-	void partial_sort(vector<int> & A, int begin, int end) {
-		if (end - begin <= 1) {
-			return;
-		}
-		int partition = quick_select(A, begin, end);
-		partial_sort(A, begin, partition);
-		partial_sort(A, partition + 1, end);
-	}
-	int quick_select(vector<int> & A, int begin, int end) {
-		int pivot = A[begin];
-		int i = begin + 1;
-		int j = end - 1;
-		while (i <= j) {
-			if (A[i] <= pivot) {
-				++i;
-			}
-			else if (pivot <= A[j]) {
-				--j;
-			}
-			else {
-				swap(A[i], A[j]);
-			}
-		}
-		--i;
-		swap(A[begin], A[i]);
-		return i;
-	}
+    void quick_sort(vector<int> & nums, int start, int end)
+    {
+        if (start < end)
+        {
+            int mid = quick_select(nums, start, end);
+            quick_sort(nums, start, mid - 1);
+            quick_sort(nums, mid + 1, end);
+        }
+    }
+    int quick_select(vector<int> & nums, int start, int end)
+    {
+        int pivot = nums[end];
+        int i = start;
+        for (int j = start; j < end; ++j)
+        {
+            int val = nums[j];
+            if (val < pivot)
+            {
+                swap(nums[j], nums[i]);
+                ++i;
+            }
+        }
+        swap(nums[i], nums[end]);
+        return i;
+    }
 };
 
 int main(void) {
     Solution solution;
-    vector<int> A;
+    vector<int> nums;
 
-    A = {3, 2, 1, 4, 5};
-    solution.sortIntegers2(A);
-    for (const auto & i : A) {
+    nums = {3, 2, 1, 4, 5};
+    solution.sortArray(nums);
+    for (const auto & i : nums) {
         cout << i << '\t';
     }
     cout << '\n';
