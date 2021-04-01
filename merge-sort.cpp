@@ -5,49 +5,56 @@ using namespace std;
 
 class Solution {
 public:
-    void sortIntegers2(vector<int> & A) {
-        merge_sort(A);
+    vector<int> sortArray(vector<int>& nums) {
+        int sz = nums.size();
+        mergeSort(nums, 0, sz - 1);
+        return nums;
     }
 private:
-    void merge_sort(vector<int> & A) {
-        partial_sort(A, 0, A.size());
-    }
-    void partial_sort(vector<int> & A, int begin, int end) {
-        if (end - begin <= 1) {
+    void mergeSort(vector<int>& nums, int start, int end)
+    {
+        int sz = end - start + 1;
+        if (sz <= 1)
+        {
             return;
         }
-        int mid = begin + (end - begin) / 2;
-        partial_sort(A, begin, mid);
-        partial_sort(A, mid, end);
-        merge(A, begin, mid, end);
-
+        int mid = (start + end) >> 1;
+        mergeSort(nums, start, mid);
+        mergeSort(nums, mid + 1, end);
+        merge(nums, start, mid, end);
     }
-    void merge(vector<int> & A, int begin, int mid, int end) {
-        vector<int> B;
-        int i = begin, j = mid;
-        while (i < mid or j < end) {
-            if (i >= mid) {
-                B.push_back(A[j]);
-                ++j;
+    void merge(vector<int>& nums, int start, int mid, int end)
+    {
+        int sz = end - start + 1;
+        int a = start;
+        int b = mid + 1;
+        vector<int> tmp(sz);
+        for (int i = 0; i < sz; ++i)
+        {
+            if (a > mid)
+            {
+                tmp[i] = nums[b];
+                ++b;
             }
-            else if (j >= end) {
-                B.push_back(A[i]);
-                ++i;
+            else if (b > end)
+            {
+                tmp[i] = nums[a];
+                ++a;
             }
-            else if (A[i] < A[j]) {
-                B.push_back(A[i]);
-                ++i;
+            else if (nums[a] <= nums[b])
+            {
+                tmp[i] = nums[a];
+                ++a;
             }
-            else {
-                B.push_back(A[j]);
-                ++j;
+            else
+            {
+                tmp[i] = nums[b];
+                ++b;
             }
         }
-        i = begin, j = 0;
-        while (i < end) {
-            A[i] = B[j];
-            ++i;
-            ++j;
+        for (int i = 0; i < sz; ++i)
+        {
+            nums[i + start] = tmp[i];
         }
     }
 };
@@ -57,7 +64,7 @@ int main(void) {
     vector<int> A;
 
     A = {3, 2, 1, 4, 5};
-    solution.sortIntegers2(A);
+    solution.sortArray(A);
     for (const auto & i : A) {
         cout << i << '\t';
     }
