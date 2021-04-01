@@ -12,3 +12,5 @@
 | --- | --- | --- |
 | Priority Queue | [C++]() |
 | vector
+| LRU Cache
+| LFU Cache
